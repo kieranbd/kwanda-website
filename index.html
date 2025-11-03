@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwanda - AI Services to Get Your Business AI Ready</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Logo temp.png" alt="Kwanda">
+            </div>
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#" class="nav-link contact-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">
+                AI services to future-proof your <span class="dynamic-text-container">
+                    <span class="dynamic-text active" id="dynamicText">accounting firm</span>
+                </span>
+            </h1>
+            <h2 class="hero-subtitle">
+                Overwhelmed by AI? Kwanda is your SME's guide to AI readiness.
+            </h2>
+            <button class="button cta-button" id="openModalBtn">
+                Join the Waitlist
+            </button>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Your 3-Step Path to AI Readiness</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-number">1</div>
+                    <h3 class="card-title">Describe your need</h3>
+                    <p class="card-text">
+                        Tell us your business problem, your goals, or the specific AI service you're looking for in plain English.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-number">2</div>
+                    <h3 class="card-title">Get your expert match</h3>
+                    <p class="card-text">
+                        Kwanda's platform analyzes your request and connects you with vetted AI talent capable of solving it.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-number">3</div>
+                    <h3 class="card-title">Engage and get AI ready</h3>
+                    <p class="card-text">
+                        Start your project, implement your AI solution, and begin your journey to higher operational efficiency and AI fluency.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <h2 class="modal-title">Join the Waitlist</h2>
+            <form class="waitlist-form" id="waitlistForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="challenge">Describe your challenge</label>
+                    <textarea 
+                        id="challenge" 
+                        name="challenge" 
+                        rows="4" 
+                        required
+                        placeholder=""
+                    ></textarea>
+                </div>
+                <button type="submit" class="button submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
