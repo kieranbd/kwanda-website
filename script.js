@@ -122,24 +122,38 @@ rotatePlaceholder();
 setInterval(rotatePlaceholder, 3000);
 
 // Form submission
-waitlistForm.addEventListener('submit', (e) => {
+waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
-        challenge: document.getElementById('challenge').value
+        message: document.getElementById('challenge').value
     };
     
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
-    
-    // Show success message (you can customize this)
-    alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
-    
-    // Reset form and close modal
-    waitlistForm.reset();
-    closeModal();
+    try {
+        const response = await fetch('https://whyc.app.n8n.cloud/webhook/kwanda-waitlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        if (response.ok) {
+            // Show success message
+            alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+            
+            // Reset form and close modal
+            waitlistForm.reset();
+            closeModal();
+        } else {
+            throw new Error('Failed to submit form');
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Sorry, there was an error submitting your form. Please try again.');
+    }
 });
 
 // Smooth scrolling for anchor links
