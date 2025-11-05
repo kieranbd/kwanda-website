@@ -51,7 +51,7 @@ if (initialText) {
 
 // Start rotation after a short delay to ensure page is loaded
 setTimeout(() => {
-    setInterval(rotateBusinessType, 4000);
+    setInterval(rotateBusinessType, 2000);
 }, 1000);
 
 // Modal functionality
@@ -98,6 +98,7 @@ document.addEventListener('keydown', (e) => {
 // Rotating placeholder text for challenge textarea
 const challengePlaceholders = [
     "I run a 30-person marketing agency and need to automate our client reporting.",
+    "I need help upskilling my organisation on AI.",
     "We're a real estate firm and want to build a chatbot to qualify new leads.",
     "Our customer support team is overwhelmed, and we're exploring AI solutions.",
     "I'm not sure where to start, but I know our internal processes are inefficient.",
@@ -113,19 +114,35 @@ const challengeTextarea = document.getElementById('challenge');
 let placeholderIndex = 0;
 
 function rotatePlaceholder() {
-    challengeTextarea.placeholder = challengePlaceholders[placeholderIndex];
-    placeholderIndex = (placeholderIndex + 1) % challengePlaceholders.length;
+    // Fade out
+    challengeTextarea.classList.add('placeholder-fade-out');
+    
+    setTimeout(() => {
+        // Change placeholder text while invisible
+        challengeTextarea.placeholder = challengePlaceholders[placeholderIndex];
+        placeholderIndex = (placeholderIndex + 1) % challengePlaceholders.length;
+        
+        // Fade in
+        setTimeout(() => {
+            challengeTextarea.classList.remove('placeholder-fade-out');
+        }, 50); // Small delay to ensure text is updated
+    }, 200); // Wait for fade out transition to complete
 }
 
 // Initialize placeholder and start rotation
-rotatePlaceholder();
-setInterval(rotatePlaceholder, 3000);
+if (challengeTextarea) {
+    challengeTextarea.placeholder = challengePlaceholders[placeholderIndex];
+    placeholderIndex = (placeholderIndex + 1) % challengePlaceholders.length;
+    setInterval(rotatePlaceholder, 3000);
+}
 
 // Form submission
 waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = {
+        companyName: document.getElementById('companyName').value,
+        companySize: document.getElementById('companySize').value,
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         message: document.getElementById('challenge').value

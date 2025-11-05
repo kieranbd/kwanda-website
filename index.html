@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="Logo temp.png" alt="Kwanda">
+                <a href="#"><img src="Logo temp.png" alt="Kwanda"></a>
             </div>
             <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle menu">
                 <span class="bar"></span>
@@ -23,7 +23,7 @@
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-                <li><a href="#" class="nav-link contact-link">Contact</a></li>
+                <li><a href="#" class="button cta-button contact-link" id="contactLink">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -51,22 +51,39 @@
             <h2 class="section-title">Your 3-Step Path to AI Readiness</h2>
             <div class="cards-container">
                 <div class="card">
-                    <div class="card-number">1</div>
-                    <h3 class="card-title">Describe your need</h3>
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            <path d="M13 8H7"></path>
+                            <path d="M17 12H7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">1. Describe your need</h3>
                     <p class="card-text">
                         Tell us your business problem, your goals, or the specific AI service you're looking for in plain English.
                     </p>
                 </div>
                 <div class="card">
-                    <div class="card-number">2</div>
-                    <h3 class="card-title">Get your expert match</h3>
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="m22 21-3-3"></path>
+                            <path d="M19 18h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">2. Get your expert match</h3>
                     <p class="card-text">
                         Kwanda's platform analyzes your request and connects you with vetted AI talent capable of solving it.
                     </p>
                 </div>
                 <div class="card">
-                    <div class="card-number">3</div>
-                    <h3 class="card-title">Engage and get AI ready</h3>
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">3. Engage and get AI ready</h3>
                     <p class="card-text">
                         Start your project, implement your AI solution, and begin your journey to higher operational efficiency and AI fluency.
                     </p>
@@ -79,25 +96,54 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <button class="modal-close" id="closeModalBtn">&times;</button>
-            <h2 class="modal-title">Join the Waitlist</h2>
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span class="title-dark">Let's Automate Your</span>
+                    <span class="title-light">Business</span>
+                </h2>
+                <p class="modal-subtitle">Tell us about your needs and we'll match you with the perfect automation expert.</p>
+            </div>
             <form class="waitlist-form" id="waitlistForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+                <div class="form-section">
+                    <h3 class="section-header">Company information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="companyName" name="companyName" placeholder="Company name" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="companySize" name="companySize" required>
+                                <option value="">Company size</option>
+                                <option value="1-10">1-10</option>
+                                <option value="11-50">11-50</option>
+                                <option value="51-100">51-100</option>
+                                <option value="101-500">101-500</option>
+                                <option value="500+">500+</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="form-section">
+                    <h3 class="section-header">Contact information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your email" required>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="challenge">Describe your challenge</label>
-                    <textarea 
-                        id="challenge" 
-                        name="challenge" 
-                        rows="4" 
-                        required
-                        placeholder=""
-                    ></textarea>
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="challenge">Describe your challenge</label>
+                        <textarea 
+                            id="challenge" 
+                            name="challenge" 
+                            rows="4" 
+                            required
+                            placeholder=""
+                        ></textarea>
+                    </div>
                 </div>
                 <button type="submit" class="button submit-button">Submit</button>
             </form>

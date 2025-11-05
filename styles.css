@@ -47,6 +47,14 @@ body {
     gap: 0.5rem;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
 .logo img {
     height: 32px;
     width: auto;
@@ -56,6 +64,12 @@ body {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
+}
+
+.nav-menu li {
+    display: flex;
+    align-items: center;
 }
 
 .nav-link {
@@ -67,6 +81,12 @@ body {
 
 .nav-link:hover {
     color: var(--dirty-violet);
+}
+
+.contact-link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 20px;
 }
 
 /* Hamburger Menu */
@@ -151,7 +171,7 @@ body {
     color: var(--slate-cyan);
     display: inline-block;
     opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dynamic-text.active {
@@ -202,7 +222,11 @@ body {
 
 .cta-button {
     font-size: 1.1rem;
-    padding: 14px 28px;
+    padding: 12px 28px;
+}
+
+.contact-link.cta-button {
+    padding: 8px 28px; /* Reduced vertical padding by ~15% */
 }
 
 /* How It Works Section */
@@ -240,6 +264,9 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .card:hover {
@@ -247,11 +274,22 @@ body {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-.card-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--gunmetal);
-    margin-bottom: 1rem;
+.card-icon {
+    width: 56px;
+    height: 56px;
+    background-color: var(--gunmetal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    align-self: center;
+}
+
+.card-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--slate-cyan);
 }
 
 .card-title {
@@ -259,6 +297,8 @@ body {
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--gunmetal);
+    text-align: left;
+    width: 100%;
 }
 
 .card-text {
@@ -291,7 +331,7 @@ body {
     background-color: white;
     padding: 3rem;
     border-radius: 12px;
-    max-width: 500px;
+    max-width: 750px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
@@ -316,18 +356,57 @@ body {
     color: var(--dirty-violet);
 }
 
+.modal-header {
+    margin-bottom: 2rem;
+}
+
 .modal-title {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.title-dark {
     color: var(--gunmetal);
+}
+
+.title-light {
+    color: var(--slate-cyan);
+}
+
+.modal-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--slate-cyan);
+    line-height: 1.5;
+    margin: 0;
 }
 
 /* Form Styles */
 .waitlist-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--gunmetal);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
 
 .form-group {
@@ -336,13 +415,15 @@ body {
 }
 
 .form-group label {
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--gunmetal);
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     padding: 12px;
     border: 2px solid var(--slate-cyan);
     border-radius: 7px;
@@ -352,10 +433,30 @@ body {
     color: var(--gunmetal);
     background-color: white;
     transition: border-color 0.3s ease;
+    height: auto;
+    line-height: 1.5;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    height: auto;
+    min-height: 48px;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23162730' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+.form-group select option {
+    padding: 12px;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: var(--dirty-violet);
 }
@@ -363,6 +464,16 @@ body {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+    box-sizing: border-box;
+}
+
+.form-group textarea::placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.form-group textarea.placeholder-fade-out::placeholder {
+    opacity: 0;
 }
 
 .submit-button {
@@ -419,6 +530,12 @@ body {
         width: 100%;
     }
 
+    .contact-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
     .nav-container {
         position: relative;
     }
@@ -446,6 +563,32 @@ body {
     .how-it-works {
         margin-top: -6rem;
         padding-top: calc(6rem + 6rem);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .expert-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .expert-hero {
+        height: 45vh;
+    }
+
+    .expert-header-title {
+        font-size: 2.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .expert-header-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .expert-header-container {
+        padding: 0 1.5rem;
     }
 }
 
@@ -492,5 +635,333 @@ body {
     .card {
         padding: 2rem;
     }
+
+    .expert-hero {
+        height: 50vh;
+    }
+
+    .expert-header-title {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .expert-header-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .expert-header-container {
+        padding: 0 1.5rem;
+    }
+
+    .expert-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .expert-registration-form {
+        padding: 3rem 1.5rem;
+    }
+}
+
+/* Expert Register Hero Section */
+.expert-hero {
+    position: relative;
+    width: 100%;
+    height: 33vh;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+    /* Align top edge with navbar bottom (including border) */
+    margin-top: -1px;
+}
+
+.expert-hero-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('media/hero 1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    /* Desaturate and adjust to black and bone colors */
+    filter: grayscale(100%) brightness(0.6) contrast(1) sepia(0.6);
+}
+
+/* Expert Register Header Section */
+.expert-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.expert-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: left;
+    width: 100%;
+}
+
+.expert-header-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.expert-header-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--bone);
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Expert Registration Form */
+.expert-registration-form {
+    padding: 4rem 2rem;
+    background-color: white;
+}
+
+.expert-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gunmetal);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gunmetal);
+    margin-bottom: 2.5rem;
+    opacity: 0.8;
+}
+
+.expert-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.expert-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.expert-form .form-group label {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--gunmetal);
+    font-size: 0.95rem;
+}
+
+.expert-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.expert-form input,
+.expert-form textarea,
+.expert-form select {
+    padding: 12px;
+    border: 2px solid var(--slate-cyan);
+    border-radius: 7px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gunmetal);
+    background-color: white;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expert-form input:focus,
+.expert-form textarea:focus,
+.expert-form select:focus {
+    outline: none;
+    border-color: var(--dirty-violet);
+}
+
+.expert-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23162730' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+.expert-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.char-count {
+    font-size: 0.85rem;
+    color: var(--slate-cyan);
+    margin-top: 0.25rem;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: var(--slate-cyan);
+    margin-top: 0.25rem;
+}
+
+/* Tech Stack Pills */
+.tech-stack-container {
+    position: relative;
+    border: 2px solid var(--slate-cyan);
+    border-radius: 7px;
+    padding: 8px;
+    min-height: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    background-color: white;
+}
+
+.tech-stack-container:focus-within {
+    border-color: var(--dirty-violet);
+}
+
+.tech-stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-stack-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--gunmetal);
+    color: var(--bone);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.tech-stack-pill-remove {
+    background: none;
+    border: none;
+    color: var(--bone);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+    font-size: 1rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.tech-stack-pill-remove:hover {
+    opacity: 1;
+}
+
+.tech-stack-input {
+    border: none !important;
+    outline: none;
+    flex: 1;
+    min-width: 150px;
+    padding: 4px;
+    margin: 0;
+    background: transparent;
+}
+
+.tech-stack-input:focus {
+    border: none !important;
+    outline: none;
+    box-shadow: none;
+}
+
+/* File Upload */
+.file-upload-container {
+    position: relative;
+}
+
+.file-upload-container input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--slate-cyan);
+    color: var(--gunmetal);
+    border-radius: 7px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.file-upload-label:hover .file-upload-button {
+    background-color: var(--gunmetal);
+    color: var(--bone);
+}
+
+.file-upload-text {
+    color: var(--gunmetal);
+    font-size: 0.95rem;
+}
+
+/* Checkbox */
+.checkbox-group {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 300;
+    margin: 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-top: 0;
+    width: auto;
+    cursor: pointer;
+    accent-color: var(--gunmetal);
+    flex-shrink: 0;
+}
+
+.expert-form .submit-button {
+    margin-top: 1rem;
+    align-self: flex-start;
+    padding: 14px 28px;
+}
+
+/* Align checkbox and button - ensure they align properly */
+.checkbox-group + .submit-button {
+    margin-top: 1rem;
 }
 

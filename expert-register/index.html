@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Registration - Kwanda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../"><img src="../Logo temp.png" alt="Kwanda"></a>
+            </div>
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="../#contact" class="button cta-button contact-link" id="contactLink">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="expert-hero">
+        <div class="expert-hero-image"></div>
+        <!-- Page Header -->
+        <div class="expert-header">
+            <div class="expert-header-container">
+                <h1 class="expert-header-title">You've been invited to join Kwanda</h1>
+                <p class="expert-header-subtitle">Join a vetted community of AI automation specialists. Work with top companies, earn premium rates, and build alongside the best.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="expert-registration-form">
+        <div class="expert-form-container">
+            <h2 class="form-title">Join Kwanda</h2>
+            <p class="form-subtitle">Tell us about yourself and your AI services expertise</p>
+            
+            <form class="expert-form" id="expertForm">
+                <div class="form-group">
+                    <label for="fullName">Full name *</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address *</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency" name="currency">
+                            <option value="">Select currency</option>
+                            <option value="ZAR">ZAR</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="USD">USD</option>
+                            <option value="AUD">AUD</option>
+                            <option value="CAD">CAD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rate">Your rate</label>
+                        <input type="number" id="rate" name="rate" placeholder="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="billingUnit">Rate basis</label>
+                        <select id="billingUnit" name="billingUnit">
+                            <option value="">Select unit</option>
+                            <option value="hourly">Hourly</option>
+                            <option value="daily">Daily</option>
+                            <option value="retainer">Retainer</option>
+                            <option value="project-based">Project-based</option>
+                        </select>
+                    </div>
+                    <small class="hint">If you bill on a project basis, enter your average project fee.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn profile URL *</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="expertise">Key areas of expertise *</label>
+                    <textarea 
+                        id="expertise" 
+                        name="expertise" 
+                        rows="4" 
+                        placeholder="AI chatbot development, workflow automation, data processing pipelines, engineering and manufacturing workflows, ... "
+                        minlength="300"
+                        required
+                    ></textarea>
+                    <small class="char-count">Minimum 300 characters</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="techStack">Your tech stack *</label>
+                    <div class="tech-stack-container">
+                        <div class="tech-stack-pills" id="techStackPills" required></div>
+                        <input 
+                            type="text" 
+                            id="techStack" 
+                            name="techStack" 
+                            placeholder="n8n, Python, Postgres, Supabase..."
+                            class="tech-stack-input"
+                        >
+                    </div>
+                    <small class="hint">Type your technologies in a comma-separated list</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio">Your portfolio</label>
+                    <div class="file-upload-container">
+                        <input type="file" id="portfolio" name="portfolio" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                        <label for="portfolio" class="file-upload-label">
+                            <span class="file-upload-button">Choose files</span>
+                            <span class="file-upload-text">No file chosen</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" value="accept" required>
+                        <span>I accept Kwanda's terms and conditions and understand the commitments outlined above. *</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="button submit-button">Submit application</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="expert-register.js"></script>
+</body>
+</html>
+
