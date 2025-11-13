@@ -351,7 +351,19 @@ if (logosCarousel) {
         
         const firstItem = items[0];
         const itemWidth = firstItem.offsetWidth;
-        const gap = 51.2; // 3.2rem = 51.2px (20% reduction from 4rem)
+        // Get gap from computed CSS (3.2rem desktop, 2.56rem mobile at 480px)
+        const computedStyle = window.getComputedStyle(logosCarousel);
+        const gapValue = computedStyle.gap || computedStyle.columnGap || '3.2rem';
+        // Convert rem to pixels (1rem = 16px by default)
+        let gap = 51.2; // Default fallback: 3.2rem = 51.2px
+        if (gapValue) {
+            if (gapValue.includes('rem')) {
+                const remValue = parseFloat(gapValue);
+                gap = remValue * 16; // Convert rem to pixels
+            } else if (gapValue.includes('px')) {
+                gap = parseFloat(gapValue);
+            }
+        }
         return (itemWidth + gap) * logoFiles.length;
     }
 

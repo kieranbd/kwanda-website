@@ -186,14 +186,14 @@ body {
 }
 
 .dynamic-text-container {
-    display: inline-block;
+    display: inline;
     position: relative;
-    vertical-align: bottom;
+    vertical-align: baseline;
 }
 
 .dynamic-text {
     color: var(--slate-cyan);
-    display: inline-block;
+    display: inline;
     opacity: 0;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -641,7 +641,7 @@ body {
     }
 
     .dynamic-text-container {
-        min-width: 150px;
+        /* Removed min-width to allow natural text wrapping */
     }
 
     .hero-subtitle {
@@ -668,6 +668,20 @@ body {
 
     .section-subtitle {
         font-size: 1.1rem;
+    }
+
+    .logos-carousel-item {
+        height: 1.75rem !important; /* 30% smaller than 2.5rem (2.5 * 0.7 = 1.75) */
+    }
+
+    .logos-carousel-item img {
+        height: 1.75rem !important; /* Override height: 100% from base styles */
+        max-height: 1.75rem !important;
+        max-width: 140px !important; /* 30% smaller than 200px */
+    }
+
+    .logos-carousel {
+        gap: 2.24rem !important; /* 30% less than 3.2rem (3.2 * 0.7 = 2.24) */
     }
 
     .form-row {
@@ -720,7 +734,7 @@ body {
     }
 
     .dynamic-text-container {
-        min-width: 120px;
+        /* Removed min-width to allow natural text wrapping */
     }
 
     .hero-subtitle {
@@ -768,7 +782,17 @@ body {
     }
 
     .logos-carousel-item {
-        height: 2rem;
+        height: 1.75rem !important; /* 30% smaller than 2.5rem (2.5 * 0.7 = 1.75) */
+    }
+
+    .logos-carousel-item img {
+        height: 1.75rem !important; /* Override height: 100% from base styles */
+        max-height: 1.75rem !important;
+        max-width: 140px !important; /* 30% smaller than 200px */
+    }
+
+    .logos-carousel {
+        gap: 2rem !important; /* 30% less than 3.2rem (3.2 * 0.7 = 2.24) */
     }
 
     .card {
@@ -1117,7 +1141,7 @@ body {
 }
 
 .section-subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 300;
     text-align: center;
     margin-bottom: 3rem;
