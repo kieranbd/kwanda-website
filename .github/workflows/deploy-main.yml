@@ -1,0 +1,25 @@
+name: Deploy to Main
+
+on:
+  push:
+    tags:
+      - "deploy-main-*"
+
+jobs:
+  promote-main:
+    name: Promote tagged commit to main
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update main branch to tagged commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin HEAD:main --force-with-lease
