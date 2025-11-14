@@ -23,10 +23,29 @@
     <meta name="twitter:title" content="Connect with AI Experts – Kwanda AI">
     <meta name="twitter:description" content="Kwanda connects businesses with vetted AI experts to automate workflows and boost efficiency. Automations powered by people.">
     <meta name="twitter:image" content="https://kwanda.ai/social/Kwanda-og-image-2.png">
+    <title>Connect with AI Experts – Kwanda AI</title>
+    <meta name="description" content="Kwanda connects businesses with vetted AI experts to automate workflows and boost efficiency. Automations powered by people.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Connect with AI Experts – Kwanda AI">
+    <meta property="og:description" content="Kwanda connects businesses with vetted AI experts to automate workflows and boost efficiency. Automations powered by people.">
+    <meta property="og:image" content="https://kwanda.ai/social/Kwanda-og-image-2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Connect with AI Experts – Kwanda AI">
+    <meta name="twitter:description" content="Kwanda connects businesses with vetted AI experts to automate workflows and boost efficiency. Automations powered by people.">
+    <meta name="twitter:image" content="https://kwanda.ai/social/Kwanda-og-image-2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicons/android-chrome-512x512.png">
 
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
@@ -44,6 +63,7 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="#"><img src="kwanda-brand/kwanda logo full dark.png" alt="Kwanda"></a>
+                <a href="#"><img src="kwanda-brand/kwanda logo full dark.png" alt="Kwanda"></a>
             </div>
             <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle menu">
                 <span class="bar"></span>
@@ -53,9 +73,13 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
                 <li><a href="#" class="nav-link contact-link" id="contactLink">Contact</a></li>
+                <li><a href="#" class="nav-link contact-link" id="contactLink">Contact</a></li>
             </ul>
         </div>
     </nav>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -66,18 +90,32 @@
             <div class="hero-eyebrow">
                 We've just closed our seed round<span class="eyebrow-emoji">🎉</span>
             </div>
+            <div class="hero-eyebrow">
+                We've just closed our seed round<span class="eyebrow-emoji">🎉</span>
+            </div>
             <h1 class="hero-title">
+                Book AI experts for your <span class="dynamic-text-container">
                 Book AI experts for your <span class="dynamic-text-container">
                     <span class="dynamic-text active" id="dynamicText">accounting firm</span>
                 </span>
                 like you book an Uber.
+                like you book an Uber.
             </h1>
             <h2 class="hero-subtitle">
+                Kwanda connects you with AI experts to get your business AI ready.
                 Kwanda connects you with AI experts to get your business AI ready.
             </h2>
             <button class="button cta-button" id="openModalBtn">
                 Scope Your Project ->
+                Scope Your Project ->
             </button>
+            <div class="quick-wins">
+                <span class="quick-win-item">Vetted Experts</span>            
+                <span class="quick-win-separator">•</span>
+                <span class="quick-win-item">Zero Obligations</span>
+                <span class="quick-win-separator">•</span>
+                <span class="quick-win-item">Zero Fees</span>
+            </div>
             <div class="quick-wins">
                 <span class="quick-win-item">Vetted Experts</span>            
                 <span class="quick-win-separator">•</span>
@@ -130,6 +168,19 @@
                     <p class="card-text">
                         Start your project, implement your AI solution, and begin your journey to higher operational efficiency and AI fluency.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technological Expertise Section -->
+    <section class="technological-expertise">
+        <div class="container">
+            <h2 class="section-title">Our Experts are Stacked</h2>
+            <h3 class="section-subtitle">We'll connect you with AI experts versed in the latest tools and libraries</h3>
+            <div class="logos-carousel-container">
+                <div class="logos-carousel" id="logosCarousel">
+                    <!-- Logos will be dynamically loaded here -->
                 </div>
             </div>
         </div>
