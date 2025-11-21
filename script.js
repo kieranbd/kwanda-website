@@ -60,19 +60,46 @@ const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const contactLinks = document.querySelectorAll('.contact-link');
 const waitlistForm = document.getElementById('waitlistForm');
+const freelancerModalOverlay = document.getElementById('freelancerModalOverlay');
+const freelancersLink = document.getElementById('freelancersLink');
+const closeFreelancerModalBtn = document.getElementById('closeFreelancerModalBtn');
+const freelancerForm = document.getElementById('freelancerForm');
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const navMenu = document.getElementById('navMenu');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
-function openModal() {
-    modalOverlay.classList.add('active');
+function lockBodyScroll() {
     document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+function restoreBodyScrollWhenIdle() {
+    const modalActive = (modalOverlay && modalOverlay.classList.contains('active')) ||
+        (freelancerModalOverlay && freelancerModalOverlay.classList.contains('active'));
+    const navActive = navMenu && navMenu.classList.contains('active');
+    if (!modalActive && !navActive) {
+        document.body.style.overflow = '';
+    }
 }
 
-openModalBtn.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
+function openModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.add('active');
+    lockBodyScroll();
+}
+
+function closeModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('active');
+    restoreBodyScrollWhenIdle();
+}
+
+if (openModalBtn) {
+    openModalBtn.addEventListener('click', openModal);
+}
+
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+}
 
 contactLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -82,18 +109,58 @@ contactLinks.forEach(link => {
 });
 
 // Close modal when clicking outside
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-        closeModal();
-    }
-});
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+}
 
 // Close modal with Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
         closeModal();
     }
+    if (e.key === 'Escape' && freelancerModalOverlay && freelancerModalOverlay.classList.contains('active')) {
+        closeFreelancerModal();
+    }
 });
+
+function openFreelancerModal() {
+    if (!freelancerModalOverlay) return;
+    freelancerModalOverlay.classList.add('active');
+    lockBodyScroll();
+}
+
+function closeFreelancerModal() {
+    if (!freelancerModalOverlay) return;
+    freelancerModalOverlay.classList.remove('active');
+    restoreBodyScrollWhenIdle();
+}
+
+if (freelancersLink && freelancerModalOverlay) {
+    freelancersLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (navMenu && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+        openFreelancerModal();
+    });
+}
+
+if (closeFreelancerModalBtn) {
+    closeFreelancerModalBtn.addEventListener('click', closeFreelancerModal);
+}
+
+if (freelancerModalOverlay) {
+    freelancerModalOverlay.addEventListener('click', (e) => {
+        if (e.target === freelancerModalOverlay) {
+            closeFreelancerModal();
+        }
+    });
+}
+
 
 // Rotating placeholder text for challenge textarea
 const challengePlaceholders = [
@@ -137,41 +204,107 @@ if (challengeTextarea) {
 }
 
 // Form submission
-waitlistForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = {
-        companyName: document.getElementById('companyName').value,
-        companySize: document.getElementById('companySize').value,
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('challenge').value
-    };
-    
-    try {
-        const response = await fetch('https://whyc.app.n8n.cloud/webhook/kwanda-waitlist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
+if (waitlistForm) {
+    waitlistForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        if (response.ok) {
-            // Show success message
-            alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+        const formData = {
+            companyName: document.getElementById('companyName').value,
+            companySize: document.getElementById('companySize').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('challenge').value
+        };
+        
+        try {
+            const response = await fetch('https://whyc.app.n8n.cloud/webhook/kwanda-waitlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
             
-            // Reset form and close modal
-            waitlistForm.reset();
-            closeModal();
-        } else {
-            throw new Error('Failed to submit form');
+            if (response.ok) {
+                // Show success message
+                alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+                
+                // Reset form and close modal
+                waitlistForm.reset();
+                closeModal();
+            } else {
+                throw new Error('Failed to submit form');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Sorry, there was an error submitting your form. Please try again.');
         }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        alert('Sorry, there was an error submitting your form. Please try again.');
-    }
-});
+    });
+}
+
+function parseTechStackInput(value) {
+    return value
+        .split(',')
+        .map(item => item.trim())
+        .filter(Boolean);
+}
+
+if (freelancerForm) {
+    freelancerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitButton = freelancerForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+        }
+
+        const currencyValue = document.getElementById('freelancerCurrency').value;
+        const rateValue = document.getElementById('freelancerRate').value;
+        const billingUnitValue = document.getElementById('freelancerBillingUnit').value;
+        const techStackValue = document.getElementById('freelancerTechStack').value;
+
+        const payload = {
+            fullName: document.getElementById('freelancerFullName').value.trim(),
+            email: document.getElementById('freelancerEmail').value.trim(),
+            linkedin: document.getElementById('freelancerLinkedIn').value.trim(),
+            currency: currencyValue || null,
+            rate: rateValue !== '' ? Number(rateValue) : null,
+            billingUnit: billingUnitValue || null,
+            expertise: document.getElementById('freelancerExpertise').value.trim(),
+            techStack: parseTechStackInput(techStackValue),
+            termsAccepted: document.getElementById('freelancerTerms').checked,
+            submittedAt: new Date().toISOString(),
+            source: 'freelancer-modal'
+        };
+
+        try {
+            const response = await fetch('https://whyc.app.n8n.cloud/webhook/kwanda-freelancers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit freelancer form');
+            }
+
+            alert('Thanks for applying! We will reach out when a matching project is available.');
+            freelancerForm.reset();
+            closeFreelancerModal();
+        } catch (error) {
+            console.error('Error submitting freelancer form:', error);
+            alert('Sorry, there was an error submitting your application. Please try again.');
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit application';
+            }
+        }
+    });
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -234,29 +367,27 @@ if (cardsContainer) {
 }
 
 // Hamburger menu functionality
-const hamburgerMenu = document.getElementById('hamburgerMenu');
-const navMenu = document.getElementById('navMenu');
-const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-
 function toggleMobileMenu() {
+    if (!navMenu || !hamburgerMenu || !mobileMenuOverlay) return;
     const isActive = navMenu.classList.contains('active');
     navMenu.classList.toggle('active');
     hamburgerMenu.classList.toggle('active');
     
     if (isActive) {
         mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        restoreBodyScrollWhenIdle();
     } else {
         mobileMenuOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        lockBodyScroll();
     }
 }
 
 function closeMobileMenu() {
+    if (!navMenu || !hamburgerMenu || !mobileMenuOverlay) return;
     navMenu.classList.remove('active');
     hamburgerMenu.classList.remove('active');
     mobileMenuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+    restoreBodyScrollWhenIdle();
 }
 
 if (hamburgerMenu && navMenu && mobileMenuOverlay) {

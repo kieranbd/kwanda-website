@@ -79,6 +79,20 @@ body {
     transition: color 0.3s ease;
 }
 
+.nav-link.freelancers-link {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    color: var(--gunmetal);
+}
+
+.nav-link.freelancers-link:hover {
+    color: var(--dirty-violet);
+}
+
 .nav-link:hover {
     color: var(--dirty-violet);
 }
@@ -640,10 +654,6 @@ body {
         min-height: calc(2.5rem * 1.3 * 3);
     }
 
-    .dynamic-text-container {
-        /* Removed min-width to allow natural text wrapping */
-    }
-
     .hero-subtitle {
         font-size: 1.25rem;
     }
@@ -731,10 +741,6 @@ body {
     .hero-title {
         font-size: 2rem;
         min-height: calc(2rem * 1.3 * 3);
-    }
-
-    .dynamic-text-container {
-        /* Removed min-width to allow natural text wrapping */
     }
 
     .hero-subtitle {
@@ -1080,12 +1086,17 @@ body {
 }
 
 .file-upload-button {
-    display: inline-block;
-    padding: 12px 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
     background-color: var(--slate-cyan);
     color: var(--gunmetal);
     border-radius: 7px;
     font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    min-width: 160px;
     transition: background-color 0.3s ease;
 }
 
@@ -1113,6 +1124,12 @@ body {
     cursor: pointer;
     font-weight: 300;
     margin: 0;
+}
+
+.checkbox-label span {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
 .checkbox-label input[type="checkbox"] {
