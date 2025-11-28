@@ -273,13 +273,14 @@ if (freelancerForm) {
             billingUnit: billingUnitValue || null,
             expertise: document.getElementById('freelancerExpertise').value.trim(),
             techStack: parseTechStackInput(techStackValue),
-            termsAccepted: document.getElementById('freelancerTerms').checked,
+            publicSharing: document.getElementById('freelancerPublicSharing')?.checked || false,
+            communityChannels: document.getElementById('freelancerCommunityChannels')?.checked || false,
             submittedAt: new Date().toISOString(),
             source: 'freelancer-modal'
         };
 
         try {
-            const response = await fetch('https://whyc.app.n8n.cloud/webhook/kwanda-freelancers', {
+            const response = await fetch('https://whyc.app.n8n.cloud/webhook-test/kwanda-freelancers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
